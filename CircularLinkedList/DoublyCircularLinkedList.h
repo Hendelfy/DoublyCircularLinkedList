@@ -14,7 +14,6 @@ public:
 	bool Delete(Node*);
 	Node* FindNode(Node*);
 	Node* GetStart();
-	void SortByRealValueAsc();
 	void InsertionSort();
 	void SortedInsert(Node*);
 private:
@@ -175,5 +174,5 @@ void DoublyCircularLinkedList::SortedInsert(Node* newNode)
 
 
 	}
-
+	Count++;
 }

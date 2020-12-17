@@ -96,6 +96,5 @@ void Complex::Scan(std::istream& is)
 		is >> *(Number*)b;
 		break;
 	}
-	is.ignore(1, 'i');
-	is.ignore(1, ')');
+	is.ignore(2, ')');
 }
