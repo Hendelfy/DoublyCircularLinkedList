@@ -163,4 +163,5 @@ void DoublyCircularLinkedList::SortedInsert(Node* newNode)
 
 
 	}
+	Count++;
 }
