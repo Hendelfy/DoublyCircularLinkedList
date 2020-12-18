@@ -14,7 +14,7 @@ void ReadList(DoublyCircularLinkedList *list, char* file){
 	Input.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	int i = 0;
 	int type;
-	Number* number = nullptr;;
+	Number* number = nullptr;
 	while (Input)
 	{
 		try

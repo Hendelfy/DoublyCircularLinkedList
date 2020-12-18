@@ -19,8 +19,25 @@ private:
 
 Fractional::~Fractional()
 {
-	delete numerator;
-	delete denominator;
+	switch (type)
+	{
+	case FRACTIONAL:
+		delete numerator;
+		delete denominator;
+		break;
+	case FRACTIONALINTCOMPLEX:
+		delete numerator;
+		delete (Number*)denominator;
+		break;
+	case FRACTIONALCOMPLEXINT:
+		delete (Number*)numerator;
+		delete denominator;
+		break;
+	case FRACTIONALCOMPLEXCOMPLEX:
+		delete (Number*)numerator;
+		delete (Number*)denominator;
+		break;
+	}
 }
 
 Fractional::Fractional(int* num, int* den) : numerator(num), denominator(den)
@@ -53,16 +70,16 @@ void Fractional::Print(std::ostream& os)
 	switch (type)
 	{
 	case FRACTIONAL:
-		os << '(' << *(int*)numerator << "/" << *(int*)denominator<< ')';
+		os << '(' << *(int*)numerator << "/" << *(int*)denominator << ')';
 		break;
 	case FRACTIONALINTCOMPLEX:
-		os << '(' << *(int*)numerator << "/" << *(Number*)denominator<< ')';
+		os << '(' << *(int*)numerator << "/" << *(Number*)denominator << ')';
 		break;
 	case FRACTIONALCOMPLEXINT:
-		os << '(' << *(Number*)numerator << "/" << *(int*)denominator<< ')';
+		os << '(' << *(Number*)numerator << "/" << *(int*)denominator << ')';
 		break;
 	case FRACTIONALCOMPLEXCOMPLEX:
-		os << '(' << *(Number*)numerator << "/" << *(Number*)denominator<< ')';
+		os << '(' << *(Number*)numerator << "/" << *(Number*)denominator << ')';
 		break;
 	}
 }

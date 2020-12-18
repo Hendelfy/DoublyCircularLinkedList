@@ -43,8 +43,25 @@ Complex::Complex(Number* a, int* b) : a(a), b(b)
 
 Complex::~Complex()
 {
-	delete a;
-	delete b;
+	switch (type)
+	{
+	case COMPLEX:
+		delete a;
+		delete b;
+		break;
+	case COMPLEXINTFRACTIONAL:
+		delete a;
+		delete (Number*)b;
+		break;
+	case COMPLEXFRACTIONALINT:
+		delete (Number*)a;
+		delete b;
+		break;
+	case COMPLEXFRACTIONALFRACTIONAL:
+		delete (Number*)a;
+		delete (Number*)b;
+		break;
+	}
 }
 void Complex::Print(std::ostream& os)
 {

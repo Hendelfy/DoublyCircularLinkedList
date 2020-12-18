@@ -10,9 +10,7 @@ public:
 	DoublyCircularLinkedList();
 	void Insert(Node*);
 	void Display();
-	int GetCount();
 	bool Delete(Node*);
-	Node* FindNode(Node*);
 	Node* GetStart();
 	void InsertionSort();
 	void SortedInsert(Node*);
@@ -91,30 +89,21 @@ bool DoublyCircularLinkedList::Delete(Node* node)
 	return false;
 }
 
-Node* DoublyCircularLinkedList::FindNode(Node* nodeLike)
-{
-	if (Start == nullptr || nodeLike == nullptr)
-		return nullptr;
-
-	return nullptr;
-}
-
 
 DoublyCircularLinkedList::~DoublyCircularLinkedList()
 {
 	if (Start != nullptr) {
 		auto current = Start;
-		while (current->next != Start) {
-			current = current->next;
-			delete current->previous;
-		}
-		current;
-		Start = nullptr;
+		Node* next;
+		do
+		{
+			next = current->next;
+			delete current; 
+			current = next;
+		} while (current!=Start);
 	}
-
 }
 
-int DoublyCircularLinkedList::GetCount() { return Count; }
 
 Node* DoublyCircularLinkedList::GetStart() { return Start; }
 
@@ -133,12 +122,12 @@ void DoublyCircularLinkedList::InsertionSort()
 
 		sorted->SortedInsert(current);
 
-		// Update current 
 		current = next;
 	} while (current != Start);
-
-	// Update Start to point to sorted doubly linked list 
 	Start = sorted->Start;
+	sorted->Start = nullptr;
+	delete sorted;
+
 }
 
 void DoublyCircularLinkedList::SortedInsert(Node* newNode)
@@ -171,6 +160,7 @@ void DoublyCircularLinkedList::SortedInsert(Node* newNode)
 		current->next->previous = newNode;
 		current->next = newNode;
 
+
+
 	}
-	Count++;
 }

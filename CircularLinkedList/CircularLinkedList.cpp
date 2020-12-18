@@ -1,7 +1,9 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include "Fractional.h"
 #include "Complex.h"
 #include "ListToolIO.h"
-
 int main(int argc, char* argv[])
 {
 	if (argc < 3)
@@ -13,4 +15,5 @@ int main(int argc, char* argv[])
 	list->InsertionSort();
 	list->Display();
 	delete list;
+	_CrtDumpMemoryLeaks();
 }
